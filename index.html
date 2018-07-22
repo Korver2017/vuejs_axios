@@ -13,6 +13,11 @@
 <body>
   <div id="app">
     <h1>{{ name }}</h1>
+    <ol>
+      <li v-for="nameList in nameLists" :key="nameList.id">
+        {{ nameList.name }}
+      </li>
+    </ol>
     <input v-model="name" @keyup.enter="addData" type="text" />
     <button @click="addData">Add to Data</button>
   </div>
@@ -22,19 +27,24 @@
       data() {
         return {
           name: 'Phantom',
+          nameLists: []
         }
       },
       methods: {
         addData() {
           axios.post('http://localhost:3000/nameLists', {
             name: this.name
-          });
+          }).then((res) => {
+            this.name = '';
+            this.nameLists.push(res.data);
+          })
         }
       },
       mounted() {
         axios.get('http://localhost:3000/nameLists')
           .then((res) => {
-            console.log(res);
+            console.log(res.data);
+            this.nameLists = res.data;
           })
       }
     });
