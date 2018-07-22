@@ -1,7 +1,12 @@
 {
-  "contents": [{
-    "name": "Korver",
-    "age": 30,
-    "email": "korver@test.com"
-  }]
+  "nameLists": [
+    {
+      "name": "Korver",
+      "id": 1
+    },
+    {
+      "name": "Phantom",
+      "id": 2
+    }
+  ]
 }
